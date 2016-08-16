@@ -1,0 +1,11 @@
+<div id="clearance" class="">
+  <h2><%= t(".title") %></h2>
+
+  <%= form_for @address do |form| %>
+    <%= render partial: '/addresses/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

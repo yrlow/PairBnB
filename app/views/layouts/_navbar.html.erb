@@ -1,0 +1,14 @@
+<nav class="menu">
+  <ul class="active">
+    <li class="current-item"><%= link_to "Home", root_url %></li>
+    <% if !signed_in? %>
+	    <li><%= link_to "Login", "/sign_in" %></li>
+	    <li><%= link_to "Signup", "/sign_up" %></li>
+    <%else%>
+ 			<li><%= link_to "log out" , sign_out_path ,method: :delete%></li>	
+ 			<li><%= link_to "list your property", new_address_path %></li>
+ 			<li><%= link_to "view your property", listings_path %></li>
+		<% end %>
+    <li><%= link_to "About Us", "/welcome/index" %></li>
+  </ul>
+</nav>

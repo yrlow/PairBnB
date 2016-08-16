@@ -1,0 +1,33 @@
+<% if @listings[0].nil? %> 
+	<h2> You have yet to list any property with us! </h2>
+<% else %>
+	<table>
+	<tr>
+			<th> index </th>
+			<th> place name </th>
+			<th> place type </th>
+			<th> address </th>
+			<th> bedroom </th>
+			<th> bath </th>
+			<th> amenity </th>
+			<th> cost per night </th>
+			<th> description </th>
+	</tr>
+	<% @listings.each_with_index do |l, index| %>
+		<tr>
+			<td><%= index + 1 %></td>
+			<td><%= l.place_name %></td>
+			<td><%= l.place_type %></td>
+			<td><%= l.address.jalan %></td>
+			<td><%= l.bedroom %></td>
+			<td><%= l.bath %></td>
+			<td><%= l.amenity %></td>
+			<td><%= l.cost_per_night %></td>
+			<td><%= l.description %></td>
+			<td><%= link_to "view", "/listings/#{l.id}" %></td>
+			<td><%= link_to "edit", "/listings/#{l.id}/edit" %></td>
+			<td><%= link_to "delete", "/listings/#{l.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
+		</tr>
+	<% end %>
+	</table>
+<% end %>

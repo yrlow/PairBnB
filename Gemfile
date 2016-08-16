@@ -14,6 +14,22 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+#for imagebundle exec rake db:migrate
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+
+#aws
+gem 'fog'
+
+#search
+gem 'searchkick'
+
+#user authentication
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'clearance'
+gem 'figaro'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

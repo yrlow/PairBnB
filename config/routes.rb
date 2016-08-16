@@ -1,56 +1,58 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+  resource :session, controller: "clearance/sessions", only: [:create, :destroy]
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  resources :users, controller: "clearance/users", only: [:create] do
+    resource :password,
+      controller: "clearance/passwords",
+      only: [:new, :create, :edit, :update]
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+	resources :users, controller: "users", only: :show
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :addresses do 
+    resources :listings, only: [:new, :create]
+  end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :listings, only: [:index, :edit, :show, :update, :destroy]
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  resources :listings do
+    resources :reservations, only: [:new, :create]
+  end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+  resources :reservations, only: [:index, :edit, :show, :update, :destroy]
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+	root 'welcome#index'
+  get '/search', to: 'listings#search'
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # get "/current_user/listings", to: "/users/:id/listing"
+
+  get "/sign_in", to: "clearance/sessions#new"
+  post "/sign_in", to: "clearance/sessions#create"
+  delete "/sign_out", to: "clearance/sessions#destroy"
+
+  get "/sign_up", to: "clearance/users#new"
+  # post "/sign_up", to: "clearance/users#create"
+  # get "users/show"
+
+	get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  # need to check out github for clearance how to generate routes here
+  # root "users#index"
+
+
+	#*** rails g clearance:routes show all these default Clearance routes
+	# resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+	# resource :session, controller: "clearance/sessions", only: [:create]
+
+	# resources :users, controller: "clearance/users", only: [:create] do
+	#   resource :password,
+	#     controller: "clearance/passwords",
+	#     only: [:create, :edit, :update]
+	# end
+
+	# get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+	# delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+	# get "/sign_up" => "clearance/users#new", as: "sign_up"
+	#*** end of default routes of Clearance
 end
