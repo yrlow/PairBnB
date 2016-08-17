@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index, :edit, :show, :update, :destroy]
 
 	root 'welcome#index'
-  get '/search', to: 'listings#search'
+  get '/search', to: 'addresses#search'
 
   # get "/current_user/listings", to: "/users/:id/listing"
 

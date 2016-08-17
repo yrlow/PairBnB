@@ -24,6 +24,9 @@ gem 'fog'
 #search
 gem 'searchkick'
 
+#calender
+gem 'bootstrap-datepicker-rails'
+
 #user authentication
 gem 'omniauth'
 gem 'omniauth-facebook'

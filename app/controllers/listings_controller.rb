@@ -6,15 +6,6 @@ class ListingsController < ApplicationController
 		@listings = listings.order('id ASC')
 	end
 
-	def search
-		@listings = Listing.search(params[:term], fields: ["jalan", "state", "country"], mispellings: {below: 5})
-        if @listings.blank?
-          redirect_to listings_path, flash:{danger: "no successful search result"}
-        else
-          render :index
-        end	
-	end
-
 	def new
 		@listing = Listing.new
 		@address = Address.find(params[:address_id])

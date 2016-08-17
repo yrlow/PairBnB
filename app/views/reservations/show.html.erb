@@ -1,0 +1,5 @@
+
+<% r = Reservation.find(params[:id]) %>
+<%= "Your Booking: #{r.listing.place_name}" %><br>
+<%= "Start Date: #{r.start_date}" %><br>
+<%= "End Date: #{r.end_date}" %><br>

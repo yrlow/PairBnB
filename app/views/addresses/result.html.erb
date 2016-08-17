@@ -1,0 +1,5 @@
+<h2> Search Result! </h2>
+<% @listings.each do |l| %>
+		<%= l.place_name %>
+		<%= link_to "view", "/listings/#{l.id}" %><br>
+<% end %>
