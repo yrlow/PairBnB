@@ -3,3 +3,22 @@
 <%= "Your Booking: #{r.listing.place_name}" %><br>
 <%= "Start Date: #{r.start_date}" %><br>
 <%= "End Date: #{r.end_date}" %><br>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <p>Listing name: <%= link_to r.listing.place_name, listing_path(r.listing) %></p>
+    <p>Location: <%= r.listing.address.jalan %> </p>
+    <p>Check-in Date: <%= r.start_date %></p>
+
+    <p>Checkout Date: <%= r.end_date %></p>
+
+    <strong>Payment Status:</strong>
+      <% if r.payments.where(status: :authorized).count == 0%>
+      <span class="btn btn-danger"> NOT PAID </span>
+
+       <%= link_to 'Pay Now' , new_payment_path + "?id=" + r.id.to_s, class: "btn btn-warning"  %>
+      <% else %>
+      <span class="btn btn-success">PAID</span>
+      <% end %>
+  </li>
+</ul>

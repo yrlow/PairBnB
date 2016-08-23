@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:index, :edit, :show, :update, :destroy]
 
+  resources :payments, only: [:new, :create]
 	root 'welcome#index'
   get '/search', to: 'addresses#search'
 
