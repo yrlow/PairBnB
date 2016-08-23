@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+#payment gateway
+gem 'braintree'
+
 #for imagebundle exec rake db:migrate
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
@@ -27,11 +30,24 @@ gem 'searchkick'
 #calender
 gem 'bootstrap-datepicker-rails'
 
+#pagination
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
+
 #user authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'clearance'
 gem 'figaro'
+
+#active job
+# gem 'redis', '3.2.1'
+gem 'sidekiq'
+
+# bootstrap
+gem 'bootstrap-sass', '~> 3.3.5' 
+gem 'autoprefixer-rails' 
+gem 'bootstrap-select-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

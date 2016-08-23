@@ -1,6 +1,4 @@
 <div>
-  <h2><%= t(".title") %></h2>
-  
   <%= form_for @listing, url: address_listings_path(@address) do |form| %>
     <%= render partial: '/listings/form', object: form %>
 

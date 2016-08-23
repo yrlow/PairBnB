@@ -1,10 +1,13 @@
 class ListingsController < ApplicationController
 	before_action :set_listing, only:[:show, :update, :destroy, :edit]
-
+	
 	def index
-		listings = Listing.where(user_id: current_user.id)
-		@listings = listings.order('id ASC')
+	  @listings = Listing.page(params[:page]).order('created_at DESC').per_page(2)
 	end
+	# def user
+	# 	listings = Listing.where(user_id: current_user.id)
+	# 	@listings = listings.order('id ASC')
+	# end
 
 	def new
 		@listing = Listing.new
